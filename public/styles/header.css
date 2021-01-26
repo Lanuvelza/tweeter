@@ -1,0 +1,9 @@
+header {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #b87b00;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  padding: 0.5em;
+}
