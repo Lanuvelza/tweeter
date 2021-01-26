@@ -6,6 +6,8 @@ nav {
   padding: 1.5em;
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
 }
 
 .moto {
