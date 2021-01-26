@@ -4,10 +4,10 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
- // Test / driver code (temporary). Eventually will get this from the server.
+// Test / driver code (temporary). Eventually will get this from the server.
 
 
- // Fake data taken from initial-tweets.json
+// Fake data taken from initial-tweets.json
 const data = [
   {
     "user": {
@@ -31,14 +31,14 @@ const data = [
     },
     "created_at": 1461113959088
   }
-]
+];
 
 // returns the the HTML structure of the tweet
- const createTweetElement = function(tweet) { 
-   const date = Date(tweet.created_at);
-   console.log(date);
-   console.log(typeof date);
-   const markup = ` 
+const createTweetElement = function(tweet) {
+  const date = Date(tweet.created_at);
+  console.log(date);
+  console.log(typeof date);
+  const markup = ` 
     <article>
       <header class="tweet-header">
         <span class="user"><img src=${tweet.user.avatars}> ${tweet.user.name}</span>
@@ -48,16 +48,16 @@ const data = [
       <footer>${date} days ago</footer>
     </article>
    `;
-   return markup;
- }
+  return markup;
+};
 
- // appends the tweet into the container
- const renderTweets = function(tweets) {
-   for (const tweet of tweets) {
-     $(".container").append(createTweetElement(tweet));
-   }
- } 
+// appends the tweet into the container
+const renderTweets = function(tweets) {
+  for (const tweet of tweets) {
+    $(".container").append(createTweetElement(tweet));
+  }
+};
 
-$(document).ready(function () {
+$(document).ready(function() {
   renderTweets(data);
 });
