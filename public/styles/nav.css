@@ -1,0 +1,17 @@
+nav {
+  height: 120px;
+  background-color: #4056a1;
+  color: #ffffff;
+  font-family: 'Bungee';
+  padding: 1.5em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.moto {
+  font-family: 'Source Sans Pro';
+}
+
+.logo {
+  font-size: 50px;
+}
