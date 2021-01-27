@@ -53,7 +53,7 @@ $(document).ready(function() {
   // appends the tweet into the container
   const renderTweets = function(tweets) {
     for (const tweet of tweets) {
-      $(".container").append(createTweetElement(tweet));
+      $(".tweet-feed").append(createTweetElement(tweet));
     }
   };
 
@@ -61,7 +61,7 @@ $(document).ready(function() {
   // sends the input tweet as a query string
   $("#post-tweet").on('submit', function(event) {
     event.preventDefault();
-    
+
     const input = $(this.children[0]).val(); 
 
     if (input.length > 140) {
@@ -76,7 +76,14 @@ $(document).ready(function() {
         url: '/tweets',
         method: 'POST',
         data: queryString
-      });
+      })
+      .done(() => {
+        loadRecentTweet();
+        // resets the form 
+        $(this.children[0]).val("");
+        $(this.children[1].children[1]).val(140);
+      })
+      .fail(error => console.log(error));  
     }
   });
 
@@ -86,9 +93,31 @@ $(document).ready(function() {
       url: '/tweets',
       method: 'GET'
     })
-    .then((data) => {
+    .done((data) => {
       renderTweets(data);
-    });
+    })
+    .fail(error => console.log(error));
   }; 
+
   loadTweets();
+
+
+  // renders the most recent tweet 
+  const renderRecentTweet = function(tweet) {
+    $(".tweet-feed").prepend(createTweetElement(tweet));
+
+  }
+
+  // loads the most recent tweet 
+  const loadRecentTweet = function() {
+    $.ajax({
+      url: '/tweets',
+      method: 'GET'
+    })
+    .done((data) => {
+      renderRecentTweet(data[data.length -1]);
+    })
+    .fail(error => console.log(error));
+  }
+
 });
