@@ -61,29 +61,29 @@ $(document).ready(function() {
   // sends the input tweet as a query string
   $("#post-tweet").on('submit', function(event) {
     event.preventDefault();
-
-    const input = $(this.children[0]).val();
-
+    const input = $(this.children[0]).val(); 
+    // checks to validate input if requirements are met
     if (input.length > 140) {
-      alert("Character count is over 140!");
+      showError("Error! : Character count is over 140!");
     } else if (input === null) {
-      alert("Input is null");
+      showError("Error! : Input is null");
     } else if (!input) {
-      alert("Input is an empty string");
+      showError("Error! : Input is an empty string");
     } else {
+      hideError();
       const queryString = $(this).serialize();
       $.ajax({
         url: '/tweets',
         method: 'POST',
         data: queryString
       })
-        .done(() => {
-          loadRecentTweet();
-          // resets the form
-          $(this.children[0]).val("");
-          $(this.children[1].children[1]).val(140);
-        })
-        .fail(error => console.log(error));
+      .done(() => {
+        loadRecentTweet();
+        // resets the form 
+        $(this.children[0]).val("");
+        $(this.children[1].children[1]).val(140);
+      })
+      .fail(error => console.log(error));  
     }
   });
 
@@ -93,37 +93,49 @@ $(document).ready(function() {
       url: '/tweets',
       method: 'GET'
     })
-      .done((data) => {
-        renderTweets(data);
-      })
-      .fail(error => console.log(error));
-  };
+    .done((data) => {
+      renderTweets(data);
+    })
+    .fail(error => console.log(error));
+  }; 
 
   loadTweets();
 
-  // renders the most recent tweet
+  // renders the most recent tweet 
   const renderRecentTweet = function(tweet) {
     $(".tweet-feed").prepend(createTweetElement(tweet));
 
-  };
+  }
 
-  // loads the most recent tweet
+  // loads the most recent tweet 
   const loadRecentTweet = function() {
     $.ajax({
       url: '/tweets',
       method: 'GET'
     })
-      .done((data) => {
-        renderRecentTweet(data[data.length - 1]);
-      })
-      .fail(error => console.log(error));
-  };
+    .done((data) => {
+      renderRecentTweet(data[data.length -1]);
+    })
+    .fail(error => console.log(error));
+  }
 
-  // escape function to prevent Cross-Site Scripting
+  // escape function to prevent cross-site scripting  
   const escape = function(str) {
-    let div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-  };
-  
+    let div = document.createElement('div'); 
+    div.appendChild(document.createTextNode(str)); 
+    return div.innerHTML;  
+  }
+
+  // displays error message if invalid
+  const showError = function(message) {
+    $(".tweet-error").slideUp( () => {
+      $(".tweet-error").slideDown().text(message);
+    });
+  }
+
+  // hides error message if valid
+  const hideError = function() {
+    $(".tweet-error").slideUp();
+  }
+
 });
