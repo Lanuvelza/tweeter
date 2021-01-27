@@ -57,8 +57,6 @@ $(document).ready(function() {
     }
   };
 
-  renderTweets(data);
-  
   // event listener for form submission
   // sends the input tweet as a query string
   $("#post-tweet").on('submit', function(event) {
@@ -70,4 +68,16 @@ $(document).ready(function() {
       data: queryString
     });
   });
+
+  // renders data from /tweets onto the main page
+  const loadTweets = function() {
+    $.ajax({
+      url: '/tweets',
+      method: 'GET'
+    })
+    .then((data) => {
+      renderTweets(data);
+    });
+  }; 
+  loadTweets();
 });
