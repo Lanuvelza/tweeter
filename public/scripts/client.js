@@ -61,12 +61,23 @@ $(document).ready(function() {
   // sends the input tweet as a query string
   $("#post-tweet").on('submit', function(event) {
     event.preventDefault();
-    const queryString = $(this).serialize();
-    $.ajax({
-      url: '/tweets',
-      method: 'POST',
-      data: queryString
-    });
+    
+    const input = $(this.children[0]).val(); 
+
+    if (input.length > 140) {
+      alert("Character count is over 140!");
+    } else if (input === null) {
+      alert("Input is null");
+    } else if (!input) {
+      alert("Input is an empty string");
+    } else {
+      const queryString = $(this).serialize();
+      $.ajax({
+        url: '/tweets',
+        method: 'POST',
+        data: queryString
+      });
+    }
   });
 
   // renders data from /tweets onto the main page
