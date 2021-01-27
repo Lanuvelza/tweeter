@@ -43,7 +43,7 @@ $(document).ready(function() {
         <span class="user"><img src=${tweet.user.avatars}> ${tweet.user.name}</span>
         <span class="usertag">${tweet.user.handle}</span>
       </header>
-      <section>${tweet.content.text}</section>
+      <section>${escape(tweet.content.text)}</section>
       <footer>${date} days ago</footer>
     </article>
    `;
@@ -62,7 +62,7 @@ $(document).ready(function() {
   $("#post-tweet").on('submit', function(event) {
     event.preventDefault();
 
-    const input = $(this.children[0]).val(); 
+    const input = $(this.children[0]).val();
 
     if (input.length > 140) {
       alert("Character count is over 140!");
@@ -77,13 +77,13 @@ $(document).ready(function() {
         method: 'POST',
         data: queryString
       })
-      .done(() => {
-        loadRecentTweet();
-        // resets the form 
-        $(this.children[0]).val("");
-        $(this.children[1].children[1]).val(140);
-      })
-      .fail(error => console.log(error));  
+        .done(() => {
+          loadRecentTweet();
+          // resets the form
+          $(this.children[0]).val("");
+          $(this.children[1].children[1]).val(140);
+        })
+        .fail(error => console.log(error));
     }
   });
 
@@ -93,31 +93,37 @@ $(document).ready(function() {
       url: '/tweets',
       method: 'GET'
     })
-    .done((data) => {
-      renderTweets(data);
-    })
-    .fail(error => console.log(error));
-  }; 
+      .done((data) => {
+        renderTweets(data);
+      })
+      .fail(error => console.log(error));
+  };
 
   loadTweets();
 
-
-  // renders the most recent tweet 
+  // renders the most recent tweet
   const renderRecentTweet = function(tweet) {
     $(".tweet-feed").prepend(createTweetElement(tweet));
 
-  }
+  };
 
-  // loads the most recent tweet 
+  // loads the most recent tweet
   const loadRecentTweet = function() {
     $.ajax({
       url: '/tweets',
       method: 'GET'
     })
-    .done((data) => {
-      renderRecentTweet(data[data.length -1]);
-    })
-    .fail(error => console.log(error));
-  }
+      .done((data) => {
+        renderRecentTweet(data[data.length - 1]);
+      })
+      .fail(error => console.log(error));
+  };
 
+  // escape function to prevent Cross-Site Scripting
+  const escape = function(str) {
+    let div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+  
 });
