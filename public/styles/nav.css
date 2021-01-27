@@ -10,10 +10,36 @@ nav {
   top: 0;
 }
 
+.logo {
+  font-size: 50px;
+}
+
+
+.make-a-tweet {
+  display: flex;
+  flex-direction: column;
+}
+
 .moto {
   font-family: 'Source Sans Pro';
 }
 
-.logo {
-  font-size: 50px;
+@keyframes bounce { 
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
 }
+
+.tweet {
+  font-size: 40px;
+  color: crimson;
+  display: flex;
+  justify-content: center;
+  border: none;
+  outline: none;
+  background: none;
+  margin: auto;
+  animation: bounce 0.8s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
