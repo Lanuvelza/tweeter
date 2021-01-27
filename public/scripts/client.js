@@ -33,12 +33,11 @@ const data = [
   }
 ];
 
+$(document).ready(function() {
 // returns the the HTML structure of the tweet
-const createTweetElement = function(tweet) {
-  const date = Date(tweet.created_at);
-  console.log(date);
-  console.log(typeof date);
-  const markup = ` 
+  const createTweetElement = function(tweet) {
+    const date = Date(tweet.created_at);
+    const markup = ` 
     <article>
       <header class="tweet-header">
         <span class="user"><img src=${tweet.user.avatars}> ${tweet.user.name}</span>
@@ -48,16 +47,27 @@ const createTweetElement = function(tweet) {
       <footer>${date} days ago</footer>
     </article>
    `;
-  return markup;
-};
+    return markup;
+  };
 
-// appends the tweet into the container
-const renderTweets = function(tweets) {
-  for (const tweet of tweets) {
-    $(".container").append(createTweetElement(tweet));
-  }
-};
+  // appends the tweet into the container
+  const renderTweets = function(tweets) {
+    for (const tweet of tweets) {
+      $(".container").append(createTweetElement(tweet));
+    }
+  };
 
-$(document).ready(function() {
   renderTweets(data);
+  
+  // event listener for form submission
+  // sends the input tweet as a query string
+  $("#post-tweet").on('submit', function(event) {
+    event.preventDefault();
+    const queryString = $(this).serialize();
+    $.ajax({
+      url: '/tweets',
+      method: 'POST',
+      data: queryString
+    });
+  });
 });
