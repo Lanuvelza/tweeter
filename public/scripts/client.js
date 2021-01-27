@@ -138,4 +138,16 @@ $(document).ready(function() {
     $(".tweet-error").slideUp();
   }
 
+   // changes color upon hovering over write a tweet button
+   $(".tweet").hover( function() {
+     $(this).css("color", "#ffffff")
+   }, function() {
+     $(this).css("color", "crimson");
+   });
+
+  // displays or hides the form on click of write a tweet button
+  $(".tweet").on('click', function() {
+    $(".new-tweet").slideToggle();
+  });
+
 });
