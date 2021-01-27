@@ -17,13 +17,24 @@ article header {
   font-size: 30px;
   display: flex;
   justify-content: space-between;
-  margin-top: 00.5em;
+  margin-top: 0.5em;
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
 
+.user {
+  display: flex;
+}
+
+article img{
+  width: 40px;
+  height: 40px;
+  margin-right: 0.25em;
+}
+
 .usertag {
   opacity: 0;
+  margin-right: 0.25em;
 }
 
 article:hover .usertag {
