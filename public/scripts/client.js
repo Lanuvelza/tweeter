@@ -34,7 +34,6 @@ const data = [
 ];
 
 $(document).ready(function() {
-  $("abbr.timeago").timeago();
   $(".new-tweet").hide();
 
   // returns the the HTML structure of the tweet
@@ -150,13 +149,6 @@ $(document).ready(function() {
     $(".tweet-error").slideUp();
   };
 
-  // changes color upon hovering over write a tweet button
-  $(".tweet").hover(function() {
-    $(this).css("color", "#ffffff");
-  }, function() {
-    $(this).css("color", "crimson");
-  });
-
   // displays or hides the form on click of write a tweet button
   $(".tweet").on('click', function() {
     $(".new-tweet").slideToggle();
@@ -175,13 +167,6 @@ $(document).ready(function() {
       $(".scroll button").hide();
       $(".tweet").show();
     }
-  });
-  
-  // changes color upon hovering over scroll button
-  $(".scroll button").hover(function() {
-    $(this).css("background-color", "red");
-  }, function() {
-    $(this).css("background-color", "orange");
   });
 
   // scrolls back to the top of the page when clicking scroll button
