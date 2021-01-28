@@ -29,5 +29,26 @@ body {
    width: 90%;
    background-color:#f4f1ec; 
    margin: auto;
+   display: flex;
+   flex-direction: column;
  }
  
+.scroll {
+  display: flex;
+  align-self: flex-end;
+  position: sticky;
+  bottom: 0;
+}
+
+.scroll button{
+  font-size: 50px;
+  color: #f4f1ec;
+  outline: none;
+  border-style: solid;
+  border-color: black;
+  border-radius: 50%;
+  background-color: orange;
+  align-self: right;
+  margin-bottom: 0.25em;
+  margin-right: -0.5em;
+ }
