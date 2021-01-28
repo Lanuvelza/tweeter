@@ -34,9 +34,12 @@ const data = [
 ];
 
 $(document).ready(function() {
-// returns the the HTML structure of the tweet
+  $(".new-tweet").hide();
+
+  // returns the the HTML structure of the tweet
   const createTweetElement = function(tweet) {
     const date = Date(tweet.created_at);
+    console.log(date);
     const markup = ` 
     <article>
       <header class="tweet-header">
@@ -44,7 +47,14 @@ $(document).ready(function() {
         <span class="usertag">${tweet.user.handle}</span>
       </header>
       <section>${escape(tweet.content.text)}</section>
-      <footer>${date} days ago</footer>
+      <footer>
+        ${date}
+        <div class="icons">
+          <i class="fas fa-flag"></i>
+          <i class="fas fa-retweet"></i>
+          <i class="fas fa-heart"></i>
+        </div>
+      </footer>
     </article>
    `;
     return markup;
@@ -61,14 +71,14 @@ $(document).ready(function() {
   // sends the input tweet as a query string
   $("#post-tweet").on('submit', function(event) {
     event.preventDefault();
-    const input = $(this.children[0]).val(); 
+    const input = $(this.children[0]).val();
     // checks to validate input if requirements are met
     if (input.length > 140) {
       showError("Error! : Character count is over 140!");
     } else if (input === null) {
       showError("Error! : Input is null");
     } else if (!input) {
-      showError("Error! : Input is an empty string");
+      showError("Error! : Cannot be empty!");
     } else {
       hideError();
       const queryString = $(this).serialize();
@@ -77,13 +87,13 @@ $(document).ready(function() {
         method: 'POST',
         data: queryString
       })
-      .done(() => {
-        loadRecentTweet();
-        // resets the form 
-        $(this.children[0]).val("");
-        $(this.children[1].children[1]).val(140);
-      })
-      .fail(error => console.log(error));  
+        .done(() => {
+          loadRecentTweet();
+          // resets the form
+          $(this.children[0]).val("");
+          $(this.children[1].children[1]).val(140);
+        })
+        .fail(error => console.log(error));
     }
   });
 
@@ -93,61 +103,90 @@ $(document).ready(function() {
       url: '/tweets',
       method: 'GET'
     })
-    .done((data) => {
-      renderTweets(data);
-    })
-    .fail(error => console.log(error));
-  }; 
+      .done((data) => {
+        renderTweets(data);
+      })
+      .fail(error => console.log(error));
+  };
 
   loadTweets();
 
-  // renders the most recent tweet 
+  // renders the most recent tweet
   const renderRecentTweet = function(tweet) {
     $(".tweet-feed").prepend(createTweetElement(tweet));
 
-  }
+  };
 
-  // loads the most recent tweet 
+  // loads the most recent tweet
   const loadRecentTweet = function() {
     $.ajax({
       url: '/tweets',
       method: 'GET'
     })
-    .done((data) => {
-      renderRecentTweet(data[data.length -1]);
-    })
-    .fail(error => console.log(error));
-  }
+      .done((data) => {
+        renderRecentTweet(data[data.length - 1]);
+      })
+      .fail(error => console.log(error));
+  };
 
-  // escape function to prevent cross-site scripting  
+  // escape function to prevent cross-site scripting
   const escape = function(str) {
-    let div = document.createElement('div'); 
-    div.appendChild(document.createTextNode(str)); 
-    return div.innerHTML;  
-  }
+    let div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
 
   // displays error message if invalid
   const showError = function(message) {
-    $(".tweet-error").slideUp( () => {
+    $(".tweet-error").slideUp(() => {
       $(".tweet-error").slideDown().text(message);
     });
-  }
+  };
 
   // hides error message if valid
   const hideError = function() {
     $(".tweet-error").slideUp();
-  }
+  };
 
-   // changes color upon hovering over write a tweet button
-   $(".tweet").hover( function() {
-     $(this).css("color", "#ffffff")
-   }, function() {
-     $(this).css("color", "crimson");
-   });
+  // changes color upon hovering over write a tweet button
+  $(".tweet").hover(function() {
+    $(this).css("color", "#ffffff");
+  }, function() {
+    $(this).css("color", "crimson");
+  });
 
   // displays or hides the form on click of write a tweet button
   $(".tweet").on('click', function() {
     $(".new-tweet").slideToggle();
+    $("#tweet-text").focus();
   });
 
+  // displays or hides scroll button depending how far down the main page
+  $(document).scroll(function() {
+    $(".scroll button").hide();
+    let scroll = $(window).scrollTop();
+    if (scroll >= 200) {
+      $(".scroll button").show();
+      $(".tweet").hide();
+      $(".new-tweet").slideUp();
+    } else {
+      $(".scroll button").hide();
+      $(".tweet").show();
+    }
+  });
+  
+  // changes color upon hovering over scroll button
+  $(".scroll button").hover(function() {
+    $(this).css("background-color", "red");
+  }, function() {
+    $(this).css("background-color", "orange");
+  });
+
+  // scrolls back to the top of the page when clicking scroll button
+  $(".scroll button").on('click', function() {
+    $(document).scrollTop(50);
+    $(".new-tweet").slideDown();
+    $("#tweet-text").focus();
+  });
+  
 });
