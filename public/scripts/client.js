@@ -34,12 +34,14 @@ const data = [
 ];
 
 $(document).ready(function() {
+  $("abbr.timeago").timeago();
   $(".new-tweet").hide();
 
   // returns the the HTML structure of the tweet
   const createTweetElement = function(tweet) {
-    const date = Date(tweet.created_at);
-    console.log(date);
+    // uses jQuery timeago to change the timestamps formatted to the time passed from when tweet is posted 
+    // example ("4 minutes ago" or "1 day ago") 
+    const date = $.timeago(new Date(tweet.created_at));
     const markup = ` 
     <article>
       <header class="tweet-header">
@@ -63,7 +65,7 @@ $(document).ready(function() {
   // appends the tweet into the container
   const renderTweets = function(tweets) {
     for (const tweet of tweets) {
-      $(".tweet-feed").append(createTweetElement(tweet));
+      $(".tweet-feed").prepend(createTweetElement(tweet));
     }
   };
 
@@ -165,7 +167,7 @@ $(document).ready(function() {
   $(document).scroll(function() {
     $(".scroll button").hide();
     let scroll = $(window).scrollTop();
-    if (scroll >= 200) {
+    if (scroll >= 300) {
       $(".scroll button").show();
       $(".tweet").hide();
       $(".new-tweet").slideUp();
@@ -184,9 +186,9 @@ $(document).ready(function() {
 
   // scrolls back to the top of the page when clicking scroll button
   $(".scroll button").on('click', function() {
-    $(document).scrollTop(50);
+    $(document).scrollTop(0);
     $(".new-tweet").slideDown();
     $("#tweet-text").focus();
   });
-  
+
 });
