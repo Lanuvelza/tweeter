@@ -6,6 +6,8 @@
     
     <!-- External CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />  
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
     <!--Font CSS-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet">
@@ -53,7 +55,6 @@
         <h2>Compose Tweet</h2>
         <div class="tweet-error"></div>
         <form id="post-tweet" method="POST" action="/tweets">
-          <!-- <label for="tweet-text">What are you humming about?</label> -->
           <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
           <footer>
             <button type="submit">Tweet</button>
@@ -63,6 +64,10 @@
       </section>
 
       <section class="tweet-feed"></section>
+
+      <div class="scroll">
+        <button>&#8679;</button>
+      </div>
 
     </main>
   </body>
