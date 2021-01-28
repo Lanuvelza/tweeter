@@ -21,6 +21,7 @@
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.4.3/jquery.timeago.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
@@ -55,6 +56,7 @@
         <h2>Compose Tweet</h2>
         <div class="tweet-error"></div>
         <form id="post-tweet" method="POST" action="/tweets">
+
           <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
           <footer>
             <button type="submit">Tweet</button>
