@@ -7,7 +7,7 @@ $(document).ready(function() {
     const counter = $(this.children[1].children[1]);
     counter.val(num - string.length);
     let count = num - string.length;
-    if (count <= 0) {
+    if (count < 0) {
       counter.css("color", "red");
     } else {
       counter.css("color", "#545149");
