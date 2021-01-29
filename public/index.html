@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <!-- Meta Information -->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
     <title>Tweeter - Home Page</title>
     
     <!-- External CSS -->
@@ -39,37 +40,42 @@
       </div>
     </nav>
 
-    <header class="tweeter">
-      <div>
-          <img src="/images/profile-hex.png"> 
-      </div>
-      <br>
-      <div>
-          <h2>Your Name</h2>
-      </div>
-  </header>
-
+    
     <!-- Page-specific (main) content here -->
     <main class="container">
 
-      <section class="new-tweet">
-        <h2>Compose Tweet</h2>
-        <div class="tweet-error"></div>
-        <form id="post-tweet" method="POST" action="/tweets">
+      <header class="tweeter">
+        <div class="avatar">
+            <img src="/images/profile-hex.png"> 
+        </div>
+        <br>
+        <div>
+            <h2>Ian Lam</h2>
+        </div>
+      </header>
+      
+      <div id="main-feed">
 
-          <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
-          <footer>
-            <button type="submit">Tweet</button>
-            <output name="counter" class="counter" for="tweet-text">140</output>
-          </footer>
-        </form>
-      </section>
-
-      <section class="tweet-feed"></section>
-
-      <div class="scroll">
-        <button>&#8679;</button>
+        <section class="new-tweet">
+          <h2>Compose Tweet</h2>
+          <div class="tweet-error"></div>
+          <form id="post-tweet" method="POST" action="/tweets">
+  
+            <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
+            <footer>
+              <button type="submit">Tweet</button>
+              <output name="counter" class="counter" for="tweet-text">140</output>
+            </footer>
+          </form>
+        </section>
+  
+        <section class="tweet-feed"></section>
+        
+        <div class="scroll">
+          <button>&#8679;</button>
+        </div>
       </div>
+      
 
     </main>
   </body>
