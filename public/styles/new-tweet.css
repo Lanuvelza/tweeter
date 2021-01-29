@@ -1,7 +1,10 @@
 .new-tweet {
+  width: 90%;
   display: flex;
   flex-direction: column;
-  margin-top: 1em;
+  align-content: center;
+  margin-top: 0.5em;
+  margin-left: 1.5em;
 }
 
 .new-tweet h2 {
@@ -25,7 +28,7 @@
   display: none;
 }
 
-.new-tweet textarea {
+textarea {
   border: none;
   outline: none;
   background-color: #f4f1ec;
@@ -33,7 +36,7 @@
   font-weight: bold;
 }
 
-.new-tweet form {
+form {
   display: flex;
   flex-direction: column;
 }
@@ -44,7 +47,8 @@
   display: flex;
   justify-content: space-between;
 }
-.new-tweet footer button{
+
+.new-tweet button{
   border-style: none;
   border-radius: 5px;
   font-family: 'Bungee';
@@ -59,3 +63,4 @@
 .new-tweet button:hover{
   background-color: #d6c400;
 }
+
