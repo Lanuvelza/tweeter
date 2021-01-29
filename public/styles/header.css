@@ -16,8 +16,8 @@
 @media (min-width: 1024px) {
   /* Write CSS rules that target Laptop/Desktop screen sizes and beyond */
   .tweeter {
-    width: 80%;
+    width: 40%;
     margin-top: 1em;
-    margin-left: 1em;
+    margin-left: 0.5em;
   }
 }
