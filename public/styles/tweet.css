@@ -1,3 +1,11 @@
+.tweet-feed {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1em;
+}
+
 article {
   margin-top: 1em;
   margin-bottom: 2em;
@@ -13,7 +21,7 @@ article:hover {
   box-shadow: 10px 10px #d7ddde;
 }
 
-article header {
+.tweet-header {
   font-size: 40px;
   display: flex;
   justify-content: space-between;
@@ -26,7 +34,7 @@ article header {
   display: flex;
 }
 
-article img{
+.user img{
   width: 50px;
   height: 50px;
   margin-right: 0.25em;
@@ -78,7 +86,3 @@ article:hover .icons {
   opacity: 0.3;
   transition: 2ms;
 }
-
-
-
-
