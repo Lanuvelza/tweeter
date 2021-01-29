@@ -86,3 +86,21 @@ article:hover .icons {
   opacity: 0.3;
   transition: 2ms;
 }
+
+
+@media (max-width: 375px) {
+  /* CSS rules that target mobile phones */
+  .tweet-header {
+    font-size: 20px;
+  }
+  .user img {
+    width: 20px;
+    height: 20px;
+  }
+  article section {
+    font-size: 20px;
+  }
+  article footer {
+    font-size: 15px;
+  }
+}
