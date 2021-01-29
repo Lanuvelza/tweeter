@@ -13,6 +13,7 @@ Tweeter is a simple, single-page Twitter clone.
 
 # Final product
 !["screenshot of Compose Tweet"](https://github.com/Lanuvelza/tweeter/blob/master/docs/tweet-box.png?raw=true)
+
 !["screenshot of tweets feed"](https://github.com/Lanuvelza/tweeter/blob/master/docs/tweet-feed.png?raw=true)
 
 
