@@ -2,7 +2,19 @@
 
 Tweeter is a simple, single-page Twitter clone.
 
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express and MongoDB back-end skills.
+
+
+# Additional Features 
+
+- added a toggle button that displays or hides the compose tweet.
+
+- added a second toggle button that scrolls the current window back up to the top of the page.
+
+
+# Final product
+!["screenshot of Compose Tweet"](https://github.com/Lanuvelza/tweeter/blob/master/docs/tweet-box.png?raw=true)
+!["screenshot of tweets feed"](https://github.com/Lanuvelza/tweeter/blob/master/docs/tweet-feed.png?raw=true)
+
 
 ## Getting Started
 
