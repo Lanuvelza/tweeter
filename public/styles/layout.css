@@ -19,6 +19,8 @@ body {
   background-color: #f4f1ec;
   font-size: 24px;
   font-family: 'Source Sans Pro';
+  display: flex;
+  flex-direction: column;
 }
 
 /*
@@ -26,8 +28,7 @@ body {
  */
 
  main {
-   width: 90%;
-   background-color:#f4f1ec; 
+   width: 100%; 
    margin: auto;
    display: flex;
    flex-direction: column;
@@ -35,7 +36,7 @@ body {
  
 .scroll {
   display: flex;
-  align-self: flex-end;
+  justify-content: flex-end;
   position: sticky;
   bottom: 0;
 }
@@ -50,5 +51,23 @@ body {
   background-color: orange;
   align-self: right;
   margin-bottom: 0.25em;
-  margin-right: -0.5em;
+  margin-right: 0.25em;
  }
+
+ .scroll button:hover {
+   background-color: crimson;
+ }
+
+
+@media (min-width: 1024px) {
+  /* CSS rules that target Laptop/Desktop screen sizes and beyond */
+  main {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #main-feed {
+    display: flex;
+    flex-direction: column;
+  }
+}
