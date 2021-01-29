@@ -38,8 +38,8 @@ $(document).ready(function() {
 
   // returns the the HTML structure of the tweet
   const createTweetElement = function(tweet) {
-    // uses jQuery timeago to change the timestamps formatted to the time passed from when tweet is posted 
-    // example ("4 minutes ago" or "1 day ago") 
+    // uses jQuery timeago to change the timestamps formatted to the time passed from when tweet is posted
+    // example ("4 minutes ago" or "1 day ago")
     const date = $.timeago(new Date(tweet.created_at));
     const markup = ` 
     <article>
@@ -72,7 +72,7 @@ $(document).ready(function() {
   // sends the input tweet as a query string
   $("#post-tweet").on('submit', function(event) {
     event.preventDefault();
-    const input = $(this.children[0]).val();
+    const input = $(this.children[0]).val().trim();
     // checks to validate input if requirements are met
     if (input.length > 140) {
       showError("Error! : Character count is over 140!");
@@ -152,6 +152,7 @@ $(document).ready(function() {
   // displays or hides the form on click of write a tweet button
   $(".tweet").on('click', function() {
     $(".new-tweet").slideToggle();
+    hideError();
     $("#tweet-text").focus();
   });
 
