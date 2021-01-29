@@ -158,7 +158,6 @@ $(document).ready(function() {
 
   // displays or hides scroll button depending how far down the main page
   $(document).scroll(function() {
-    $(".scroll button").hide();
     let scroll = $(window).scrollTop();
     if (scroll >= 300) {
       $(".scroll button").show();
