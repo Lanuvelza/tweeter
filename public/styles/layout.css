@@ -42,6 +42,7 @@ body {
 }
 
 .scroll button{
+  display: none;
   font-size: 50px;
   color: #f4f1ec;
   outline: none;
