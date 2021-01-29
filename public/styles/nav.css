@@ -1,6 +1,5 @@
 nav {
   width: 100%;
-  height: 5%;
   background-color: #4056a1;
   color: #ffffff;
   font-family: 'Bungee';
@@ -47,4 +46,18 @@ nav {
 
 .tweet:hover {
   color: #ffffff
+}
+
+
+@media (max-width: 375px) {
+  /* CSS rules that target mobile phones */
+  nav {
+    padding: 1em;
+  }
+  .logo {
+    font-size: 1.5em;
+  }
+  .moto {
+    font-size: 0.5em;
+  }
 }
